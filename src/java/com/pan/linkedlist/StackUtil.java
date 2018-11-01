@@ -1,5 +1,7 @@
 package com.pan.linkedlist;
 
+import java.util.Stack;
+
 /**
  * Created by FantasticPan on 2018/11/1.
  */
@@ -36,5 +38,22 @@ public class StackUtil {
     }
 
     //2.单链表中删除指定数值的节点方法一：利用栈
+    public Node removeValue1(Node head, int num) {
+        Stack<Node> stack = new Stack<>();
+        while (head !=null) {
+            if (head.data!=num) {
+                stack.push(head);
+            }
+            head = head.next;
+        }
+        while (!stack.isEmpty()) {
+            stack
+                    .peek() //返回栈的头部节点
+                    .next = head;
+            head = stack
+                    .pop(); //返回栈的头部节点并删除
+        }
+        return head;
+    }
     //3.单链表中删除指定数值的节点方法二：不利用栈
 }
