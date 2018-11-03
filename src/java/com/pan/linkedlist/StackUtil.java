@@ -19,6 +19,7 @@ public class StackUtil {
 
     /**
      * 1.删除单链表中的指定节点
+     *
      * @param head
      * @param node
      */
@@ -46,6 +47,7 @@ public class StackUtil {
 
     /**
      * 2.单链表中删除指定数值的节点方法一：利用栈
+     *
      * @param head
      * @param num
      * @return
@@ -63,16 +65,17 @@ public class StackUtil {
         //把栈中元素还原为链表，注意栈是先入后出
         while (!stack.isEmpty()) {
             stack
-                    .peek() //返回栈的头部节点
+                    .peek() //返回栈顶元素
                     .next = head;
             head = stack
-                    .pop(); //返回栈的头部节点并删除
+                    .pop(); //返回栈顶元素，并且将该栈顶元素出栈
         }
         return head;
     }
 
     /**
      * 3.单链表中删除指定数值的节点方法二：不利用栈
+     *
      * @param head
      * @param num
      * @return
@@ -99,6 +102,7 @@ public class StackUtil {
 
     /**
      * 4.删除单链表中数值重复的节点
+     *
      * @param head
      */
     public void deleteDuplication(Node head) {
@@ -108,15 +112,65 @@ public class StackUtil {
         HashSet<Integer> set = new HashSet<>();
         Node pre = head;
         Node cur = head.next;
+
+        //添加头节点，重复节点永远不会删除头节点
         set.add(head.data);
         while (cur != null) {
+            //存在，删除
             if (set.contains(cur.data)) {
                 pre.next = cur.next;
-            }else {
+            }
+            //不存在，添加HashSet
+            else {
                 set.add(cur.data);
                 pre = cur;
             }
             cur = cur.next;
         }
+    }
+
+    /**
+     * 5.两个单链表生成相加链表
+     * 前提：每一个节点里面只能存一个0-9的数字
+     *
+     * @param head1
+     * @param head2
+     * @return
+     */
+    public Node addList(Node head1, Node head2) {
+        Stack<Integer> stack1 = new Stack<>();
+        Stack<Integer> stack2 = new Stack<>();
+        //把链表1的所有元素压栈
+        while (head1 != null) {
+            stack1.push(head1.data);
+            head1 = head1.next;
+        }
+        //把链表2的所有元素压栈
+        while (head2 != null) {
+            stack2.push(head2.data);
+            head2 = head2.next;
+        }
+        int n1 = 0;//链表1的数值
+        int n2 = 0;//链表2的数值
+        int n = 0;//n1 + n2 + ca
+        int ca = 0; //进位
+
+        Node node = null; //当前节点
+        Node pnode = null; //当前节点的前驱结点
+        while (!stack1.isEmpty() || !stack2.isEmpty()) {
+            n1 = stack1.isEmpty() ? 0 : stack1.pop();
+            n2 = stack2.isEmpty() ? 0 : stack2.pop();
+            n = n1 + n2 + ca;
+            node = new Node(n % 10);
+            node.next = pnode;
+            pnode = node;
+            ca = n / 10;
+        }
+        if (ca == 1) {
+            pnode = node;
+            node = new Node(n / 10);
+            node.next = pnode;
+        }
+        return node;
     }
 }
