@@ -201,6 +201,12 @@ public class StackUtil {
         return true;
     }
 
+    /**
+     * 7.删除单链表的倒数第k个节点
+     * @param head
+     * @param k
+     * @return
+     */
     public Node removeLastKthNode(Node head, int k) {
         if (k <= 0 || head == null) {
             return head;
@@ -213,5 +219,12 @@ public class StackUtil {
                 return head;
             }
         }
+        Node q = head;
+        while (p.next != null) {
+            p = p.next;
+            q = q.next;
+        }
+        q.next = q.next.next;
+        return head;
     }
 }
