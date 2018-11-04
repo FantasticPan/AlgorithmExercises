@@ -173,4 +173,45 @@ public class StackUtil {
         }
         return node;
     }
+
+    /**
+     * 6.判断一个链表是否为回文结构
+     * 通过栈，比对逆序和原序数值是否相同
+     *
+     * @param head
+     * @return
+     */
+    public boolean isPalindrome(Node head) {
+        if (head == null) {
+            return false;
+        }
+        Stack<Node> stack = new Stack<>();
+        Node cur = head;
+        //链表全部元素入栈
+        while (cur != null) { //这里不是cur.next，不然最后一个节点没有入栈
+            stack.push(cur);
+            cur = cur.next;
+        }
+        while (head.next != null) {
+            if (head.data != stack.pop().data) {
+                return false;
+            }
+            head = head.next;
+        }
+        return true;
+    }
+
+    public Node removeLastKthNode(Node head, int k) {
+        if (k <= 0 || head == null) {
+            return head;
+        }
+        Node p = head;
+        for (int i = 0; i < k; i++) {
+            if (p.next != null) {
+                p = p.next;
+            }else {
+                return head;
+            }
+        }
+    }
 }
