@@ -2,7 +2,7 @@ package com.pan.linkedlist;
 
 /**
  * Created by FantasticPan on 2018/11/7.
- * 实现一个链表
+ * 实现单向链表
  */
 public class LinkList {
 

@@ -8,7 +8,7 @@ import java.util.Stack;
  */
 public class StackUtil {
 
-    class Node {
+    private class Node {
         int data;
         Node next;
 
