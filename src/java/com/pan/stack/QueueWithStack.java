@@ -26,8 +26,8 @@ public class QueueWithStack {
      */
     public static void deleteHead() {
         if (!stack2.empty()) {
-            System.out.println("弹出栈元素："+stack2.pop());
-        }else {
+            System.out.println("弹出栈元素：" + stack2.pop());
+        } else {
             if (stack1.empty()) {
                 throw new RuntimeException("队列为空");
             }

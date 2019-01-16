@@ -8,6 +8,8 @@ import org.junit.Test;
  */
 public class LinkList {
 
+    Integer a;
+
     private Node head;
 
     /**
@@ -30,7 +32,6 @@ public class LinkList {
      */
     @Test
     public void test() {
-        Node node = new Node(null,null,null);
-        System.out.println(node == null);
+        System.out.println("作为");
     }
 }
