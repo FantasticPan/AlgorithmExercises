@@ -14,8 +14,6 @@ public class Exercise10_3 {
             return 2;
         }
 
-        int result = JumpFloorII(target - 1);
-        result = result * 2;
-        return result;
+        return JumpFloorII(target - 1) * 2;
     }
 }
