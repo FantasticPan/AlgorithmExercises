@@ -1,7 +1,7 @@
 package com.pan.NowCoder;
 
 /**
- * 链表中倒数第k个节点
+ * 链表中倒数第k个节点-鲁棒性
  * Created by FantasticPan on 2019/1/19.
  */
 public class Exercise22 {
