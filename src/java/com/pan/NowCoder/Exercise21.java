@@ -1,7 +1,7 @@
 package com.pan.NowCoder;
 
 /**
- * 调整数组顺序使奇数位于偶数前面-鲁棒性
+ * 调整数组顺序使奇数位于偶数前面-完整性
  * Created by FantasticPan on 2019/1/19.
  */
 public class Exercise21 {
