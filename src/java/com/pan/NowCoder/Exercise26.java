@@ -41,13 +41,13 @@ public class Exercise26 {
     }
 
     /**
-     *
      * @param root1
      * @param root2
      * @return
      */
     private boolean doesTree1HaveTree2(TreeNode root1, TreeNode root2) {
-        //如果Tree2已经遍历完了都能对应的上，返回true
+        //如果Tree2已经遍历完了都能对应的上，返回true，两个if顺序不能调换
+        //应为在调用函数中是判断了root2不为空的，座椅如果此时root2为空，则一定是遍历完成的
         if (root2 == null) {
             return true;
         }
