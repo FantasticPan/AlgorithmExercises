@@ -7,10 +7,12 @@ package com.pan.EightSorts;
 public class InsertSort {
 
     public static void main(String[] args) {
-        int x[] = {2, 4, 1, 8, 5, 6, 3, 0, 7, 9};
+        int[] x = {2, 4, 1, 8, 5, 6, 3, 0, 7, 9};
         new InsertSort().insertSort(x);
         System.out.println();
         new InsertSort().twoInsertSort(x);
+        System.out.println();
+        new InsertSort().shellSort(x);
     }
 
     /**
@@ -63,6 +65,27 @@ public class InsertSort {
 
             //将left位置赋值为要插入的数
             array[left] = temp;
+        }
+        for (int x : array) {
+            System.out.print(x + " ");
+        }
+    }
+
+    /**
+     * 希尔排序
+     *
+     * @param array
+     */
+    public void shellSort(int[] array) {
+        for (int gap = array.length >> 1; gap >= 1; gap >>= 1) {
+            for (int i = gap; i < array.length; i++) {
+                int temp = array[i];
+                int j;
+                for (j = i - gap; j >= 0 && array[j] > temp; j -= gap) {
+                    array[j + gap] = array[j];
+                }
+                array[j + gap] = temp;
+            }
         }
         for (int x : array) {
             System.out.print(x + " ");
