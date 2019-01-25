@@ -84,6 +84,7 @@ public class ExchangeSort {
     public void quickSort(int[] array, int left, int right) {
         int _left = left;
         int _right = right;
+        //需要有此判断退出递归
         if (left <= right) {
             int temp = array[left];
             while (left != right) {
@@ -97,8 +98,9 @@ public class ExchangeSort {
                 }
                 array[right] = array[left];
             }
-            //此时low=high 是基准元素的位置，也是空出来的那个位置
+            //此时left=right，是基准元素的位置，也是空出来的那个位置
             array[right] = temp;
+            //递归调用
             quickSort(array, _left, left - 1);
             quickSort(array, right + 1, _right);
         }
