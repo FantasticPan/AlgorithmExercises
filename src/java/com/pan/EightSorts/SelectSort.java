@@ -81,6 +81,11 @@ public class SelectSort {
         }
     }
 
+    /**
+     * 堆排序
+     *
+     * @param array
+     */
     public void heapSort(int[] array) {
         for (int i = 0; i < array.length; i++) {
             //构建堆
