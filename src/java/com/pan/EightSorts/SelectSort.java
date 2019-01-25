@@ -12,6 +12,8 @@ public class SelectSort {
         new SelectSort().simpleSelectSort(x);
         System.out.println();
         new SelectSort().twoSelectSort(x);
+        System.out.println();
+        new SelectSort().heapSort(x);
     }
 
     /**
@@ -20,7 +22,7 @@ public class SelectSort {
      * @param array
      */
     public void simpleSelectSort(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
+        for (int i = 0; i < array.length >> 1; i++) {
             int min = i;
             for (int j = i + 1; j < array.length; j++) {
 
@@ -46,10 +48,10 @@ public class SelectSort {
      * @param array
      */
     public void twoSelectSort(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
+        for (int i = 0; i < array.length / 2; i++) {
             int min = i;
             int max = i;
-            for (int j = i + 1; j < array.length; j++) {
+            for (int j = i + 1; j < array.length - i; j++) {
                 if (array[j] > array[max]) {
                     max = j;
                 } else if (array[j] < array[min]) {
@@ -62,15 +64,64 @@ public class SelectSort {
                 array[min] = temp;
             }
 
-            //如果第一个数是最大值，则将原来调换的最大时赋值给max
+            //如果第一个数是最大值，则将原来调换的最大值赋值给max
             if (i == max) {
                 max = min;
             }
 
             if (array.length - 1 - i != max) {
-                int temp = array[i];
-                array[i] = array[max];
+                int temp = array[array.length - 1 - i];
+                array[array.length - 1 - i] = array[max];
                 array[max] = temp;
+            }
+        }
+
+        for (int x : array) {
+            System.out.print(x + " ");
+        }
+    }
+
+    public void heapSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            //构建堆
+            createMaxHeap(array, array.length - 1 - i);
+            if (0 != array.length - 1 - i) {
+                int temp = array[0];
+                array[0] = array[array.length - 1 - i];
+                array[array.length - 1 - i] = temp;
+            }
+        }
+
+        for (int x : array) {
+            System.out.print(x + " ");
+        }
+    }
+
+    public void createMaxHeap(int[] array, int lastIndex) {
+        //从最后一个非叶节点开始
+        for (int i = (lastIndex - 1) >> 1; i >= 0; i--) {
+            //保存当前正在判断的节点
+            int k = i;
+            //如果当前k节点的子节点存在
+            while (2 * k + 1 <= lastIndex) {
+                //biggerIndex总是记录较大节点的值，先赋值为当前节点的左子节点的索引
+                int biggerIndex = 2 * k + 1;
+                //如果右节点存在
+                if (biggerIndex + 1 <= lastIndex) {
+                    if (array[biggerIndex] < array[biggerIndex + 1]) {
+                        biggerIndex++;
+                    }
+                }
+                if (array[k] < array[biggerIndex]) {
+                    int temp = array[k];
+                    array[k] = array[biggerIndex];
+                    array[biggerIndex] = temp;
+                    //如果子节点更换了，那么，以子节点为根的子树会不会受到影响呢？
+                    k = biggerIndex;
+                    //如果不用交换，那么，就直接终止循环了
+                } else {
+                    break;
+                }
             }
         }
     }
